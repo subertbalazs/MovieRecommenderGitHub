@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+    <h1 class="register-title">Registration</h1>
+    <form class="register">
+        <input type="firstName" class="register-input" placeholder="First name"><br>
+        <input type="lastName" class="register-input" placeholder="Last name"><br>
+        <input type="nickName" class="register-input" placeholder="Nick name"><br>
+        <div class="register-switch">
+            <input type="radio" name="sex" value="F" id="sex_f" class="register-switch-input" checked>
+            <label for="sex_f" class="register-switch-label">Female</label>
+            <input type="radio" name="sex" value="M" id="sex_m" class="register-switch-input">
+            <label for="sex_m" class="register-switch-label">Male</label>
+        </div>
+        <p id="birthdateLabel">Birthdate:</p><input type="date" name="bday"><br>
+        <input type="password" class="register-input" placeholder="Password"><br>
+        <input type="password" class="register-input" placeholder="Confirm password"><br>
+        <input type="address" class="register-input" placeholder="Address"><br>
+        <input type="submit" value="Register" class="register-button"><br>
+    </form>
+</body>
+</html>
