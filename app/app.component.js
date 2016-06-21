@@ -15,7 +15,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: '<h1>My First Angular 2 App</h1>'
+            template: "<div class=\"container\">\n  <h2>Login</h2>\n  <form class=\"form-horizontal\" role=\"form\">\n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" for=\"email\">Email:</label>\n      <div class=\"col-sm-10\">\n        <input type=\"email\" class=\"form-control\" id=\"email\" placeholder=\"Enter email\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" for=\"pwd\">Password:</label>\n      <div class=\"col-sm-10\">\n        <input type=\"password\" class=\"form-control\" id=\"pwd\" placeholder=\"Enter password\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <div class=\"col-sm-offset-2 col-sm-10\">\n        <div class=\"checkbox\">\n          <label><input type=\"checkbox\"> Remember me</label>\n        </div>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <div class=\"col-sm-offset-2 col-sm-10\">\n        <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n      </div>\n    </div>\n  </form>\n</div>",
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
