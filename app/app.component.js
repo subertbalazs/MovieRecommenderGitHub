@@ -8,14 +8,34 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
+var router_deprecated_1 = require("@angular/router-deprecated");
+var login_form_component_1 = require('./login-form/login-form.component');
+var registration_form_component_1 = require('./registration-form/registration-form.component');
 var AppComponent = (function () {
     function AppComponent() {
+        this.title = 'Movie Recommender';
     }
     AppComponent = __decorate([
+        router_deprecated_1.RouteConfig([
+            {
+                path: '/Login',
+                name: 'Login',
+                component: login_form_component_1.LoginFieldComponent,
+                useAsDefault: true
+            },
+            {
+                path: '/Register',
+                name: 'Register',
+                component: registration_form_component_1.RegistrationFieldComponent,
+            }
+        ]),
         core_1.Component({
             selector: 'my-app',
-            templateUrl: 'app/login-form/login-form.component.html'
+            template: "\n  <h1>{{title}}</h1>\n  <nav>\n    <a [routerLink]=\"['Login']\">Login</a>\n    <a [routerLink]=\"['Register']\">Register</a>\n  </nav>\n  <router-outlet></router-outlet>",
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES],
+            providers: [
+                router_deprecated_1.ROUTER_PROVIDERS]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
