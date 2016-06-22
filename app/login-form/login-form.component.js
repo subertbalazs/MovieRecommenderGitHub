@@ -12,10 +12,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Created by herczkumihalybalazs on 2016.06.21..
  */
 var core_1 = require('@angular/core');
+var user_1 = require('./user');
 var LoginFieldComponent = (function () {
     function LoginFieldComponent() {
-        this.kacsa = "megjeleniteni";
+        this.user = new user_1.User('kacsa', 'kutya');
+        this.submitted = false;
+        this.active = true;
     }
+    LoginFieldComponent.prototype.onSubmit = function () { this.submitted = true; };
+    LoginFieldComponent.prototype.userLogin = function () {
+        var _this = this;
+        this.user = new user_1.User('', '');
+        this.active = false;
+        setTimeout(function () { return _this.active = true; }, 0);
+    };
     LoginFieldComponent = __decorate([
         core_1.Component({
             selector: 'log',

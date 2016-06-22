@@ -17,7 +17,7 @@ import {RegistrationFieldComponent} from './registration-form/registration-form.
 
     }
 ])
-
+//TODO: Extract HTML into separated file
 @Component({
     selector: 'my-app',
     template: `
@@ -27,13 +27,10 @@ import {RegistrationFieldComponent} from './registration-form/registration-form.
     <a [routerLink]="['Register']">Register</a>
   </nav>
   <router-outlet></router-outlet>`,
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, LoginFieldComponent],
     providers: [
         ROUTER_PROVIDERS]
 })
-
-
-
 export class AppComponent {
     title = 'Movie Recommender';
 }
