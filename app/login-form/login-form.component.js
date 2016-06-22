@@ -17,7 +17,7 @@ var LoginFieldComponent = (function () {
     }
     LoginFieldComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
+            selector: 'log',
             templateUrl: 'app/login-form/login-form.component.html'
         }), 
         __metadata('design:paramtypes', [])
