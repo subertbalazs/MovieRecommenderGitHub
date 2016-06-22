@@ -14,19 +14,12 @@ import {RegistrationFieldComponent} from './registration-form/registration-form.
         path: '/Register',
         name: 'Register',
         component: RegistrationFieldComponent,
-
     }
 ])
 //TODO: Extract HTML into separated file
 @Component({
     selector: 'my-app',
-    template: `
-  <h1>{{title}}</h1>
-  <nav>
-    <a [routerLink]="['Login']">Login</a>
-    <a [routerLink]="['Register']">Register</a>
-  </nav>
-  <router-outlet></router-outlet>`,
+    templateUrl: './app/app.component.html',
     directives: [ROUTER_DIRECTIVES, LoginFieldComponent],
     providers: [
         ROUTER_PROVIDERS]
