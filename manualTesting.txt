@@ -1,0 +1,3 @@
+-application start: OK
+-application close: OK
+-Login validation: OK
