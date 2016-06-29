@@ -1,14 +1,17 @@
 /**
  * Created by herczkumihalybalazs on 2016.06.22..
  */
-// import { provideRouter, RouterConfig }  from '@angular/router';
-//
-// export const routes: RouterConfig = [
-//     { path: 'crisis-center', component: CrisisCenterComponent },
-//     { path: 'heroes', component: HeroListComponent },
-//     { path: 'hero/:id', component: HeroDetailComponent }
-// ];
-//
-// export const APP_ROUTER_PROVIDERS = [
-//     provideRouter(routes)
-// ];
+
+import { provideRouter, RouterConfig } from '@angular/router';
+import {LoginFieldComponent} from './login-form/login-form.component';
+import {RegistrationFieldComponent} from './registration-form/registration-form.component';
+import {ProfileComponent} from './profile/profile.component';
+
+export const routes: RouterConfig = [
+    { path: 'Login', component: LoginFieldComponent},
+    { path: 'Register', component: RegistrationFieldComponent },
+    { path: 'heroes', component: ProfileComponent }
+];
+export const APP_ROUTER_PROVIDERS = [
+    provideRouter(routes)
+];
