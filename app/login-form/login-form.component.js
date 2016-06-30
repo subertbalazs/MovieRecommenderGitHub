@@ -33,7 +33,7 @@ var LoginFieldComponent = (function () {
     LoginFieldComponent.prototype.gotToRegistration = function () {
         this.router.navigate(['/registration']);
     };
-    LoginFieldComponent.prototype.gotToProfile = function () {
+    LoginFieldComponent.prototype.gotToProfileFromLog = function () {
         this.router.navigate(['/profile']);
     };
     LoginFieldComponent = __decorate([

@@ -34,7 +34,7 @@ export class LoginFieldComponent {
         this.router.navigate(['/registration']);
     }
 
-    gotToProfile() {
+    gotToProfileFromLog() {
         this.router.navigate(['/profile']);
     }
 

@@ -9,15 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var RegistrationFieldComponent = (function () {
-    function RegistrationFieldComponent() {
+    function RegistrationFieldComponent(router) {
+        this.router = router;
     }
+    RegistrationFieldComponent.prototype.gotToProfileFromReg = function () {
+        this.router.navigate(['/profile']);
+    };
     RegistrationFieldComponent = __decorate([
         core_1.Component({
             selector: 'reg',
             templateUrl: 'app/registration-form/registration-form.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], RegistrationFieldComponent);
     return RegistrationFieldComponent;
 }());
