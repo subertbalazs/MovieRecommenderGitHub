@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Login</button>
+                <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid" (click)="gotToProfile()">Login</button>
             </div>
         </div>
         <div class="form-group">
@@ -38,7 +38,7 @@
                 <label>Haven’t you got account?</label>
             </div>
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" class="btn btn-default">Register</button>
+                <button type="button" class="btn btn-default" (click)="gotToRegistration()">Registration</button>
             </div>
         </div>
 

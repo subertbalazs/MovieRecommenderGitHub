@@ -11,27 +11,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 /**
  * Created by herczkumihalybalazs on 2016.06.21..
  */
-var core_1 = require('@angular/core');
-var user_1 = require('./user');
+var core_1 = require("@angular/core");
+var user_1 = require("./user");
+var router_1 = require("@angular/router");
 var LoginFieldComponent = (function () {
-    function LoginFieldComponent() {
-        this.user = new user_1.User('kacsa', 'kutya');
+    function LoginFieldComponent(router) {
+        this.router = router;
+        this.user = new user_1.User('', '');
         this.submitted = false;
         this.active = true;
     }
-    LoginFieldComponent.prototype.onSubmit = function () { this.submitted = true; };
+    LoginFieldComponent.prototype.onSubmit = function () {
+        this.submitted = true;
+    };
     LoginFieldComponent.prototype.userLogin = function () {
         var _this = this;
         this.user = new user_1.User('', '');
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
     };
+    LoginFieldComponent.prototype.gotToRegistration = function () {
+        this.router.navigate(['/registration']);
+    };
+    LoginFieldComponent.prototype.gotToProfile = function () {
+        this.router.navigate(['/profile']);
+    };
     LoginFieldComponent = __decorate([
         core_1.Component({
             selector: 'log',
             templateUrl: 'app/login-form/login-form.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], LoginFieldComponent);
     return LoginFieldComponent;
 }());

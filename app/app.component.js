@@ -10,22 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require('@angular/router');
-// import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "@angular/router-deprecated";
-// import {LoginFieldComponent} from './login-form/login-form.component';
-// import {RegistrationFieldComponent} from './registration-form/registration-form.component';
-// @RouteConfig([
-//     {
-//         path: '/Login',
-//         name: 'Login',
-//         component: LoginFieldComponent,
-//         useAsDefault: true
-//     },
-//     {
-//         path: '/Register',
-//         name: 'Register',
-//         component: RegistrationFieldComponent,
-//     }
-// ])
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Movie Recommender';

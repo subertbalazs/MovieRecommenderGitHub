@@ -8,9 +8,10 @@ import {RegistrationFieldComponent} from './registration-form/registration-form.
 import {ProfileComponent} from './profile/profile.component';
 
 export const routes: RouterConfig = [
-    { path: 'Login', component: LoginFieldComponent},
-    { path: 'Register', component: RegistrationFieldComponent },
-    { path: 'heroes', component: ProfileComponent }
+    { path: 'login', component: LoginFieldComponent},
+    { path: 'registration', component: RegistrationFieldComponent },
+    { path: 'profile', component: ProfileComponent },
+    { path: '', redirectTo: '/login', terminal: true}
 ];
 export const APP_ROUTER_PROVIDERS = [
     provideRouter(routes)
