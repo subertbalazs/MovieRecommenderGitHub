@@ -1,28 +1,54 @@
 <div class="container">
     <h2>Registration</h2>
-    <form class="form-horizontal" role="form">
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="firstName">First name:</label>
+    <form class="form-horizontal" role="form" #registerForm="ngForm" [ngFormModel]="group" (ngSubmit)="onSubmit()"
+          novalidate>
+        <div class="form-group"><label class="control-label col-sm-2" for="firstName">First name:</label>
             <div class="col-sm-10">
-                <input type="text" id="firstName" class="form-control" placeholder="First name"><br>
+                <input type="text" id="firstName" class="form-control" placeholder="First name"
+                       [ngFormControl]="firstName"><br>
+                <div *ngIf="firstName.dirty && !firstName.valid">
+                    <div *ngIf="firstName.hasError('required')" class="alert alert-danger">First name is required</div>
+                    <div *ngIf="firstName.hasError('maxlength')" class="alert alert-danger">First name is no longer than
+                        30 character
+                    </div>
+                    <div *ngIf="firstName.hasError('nameFormat')" class="alert alert-danger">Please enter your valid
+                        name
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="lastName">Last name:</label>
             <div class="col-sm-10">
-                <input type="text" id="lastName" class="form-control" placeholder="Last name"><br>
+                <input type="text" id="lastName" class="form-control" placeholder="Last name"
+                       [ngFormControl]="lastName"><br>
+                <div *ngIf="lastName.dirty && !lastName.valid">
+                    <div *ngIf="lastName.hasError('required')" class="alert alert-danger">Last name is required</div>
+                    <div *ngIf="lastName.hasError('maxlength')" class="alert alert-danger">Last name is no longer than
+                        50 character
+                    </div>
+                    <div *ngIf="lastName.hasError('nameFormat')" class="alert alert-danger">Please enter your valid
+                        name
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="nickName">Nick name:</label>
             <div class="col-sm-10">
-                <input type="text" id="nickName" class="form-control" placeholder="Nick name"><br>
+                <input type="text" id="nickName" class="form-control" placeholder="Nick name"
+                       [ngFormControl]="nickName"><br>
+                <div *ngIf="nickName.dirty && !nickName.valid">
+                    <div *ngIf="nickName.hasError('maxlength')" class="alert alert-danger">Nickname is no longer than 20
+                        character
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="gender">Gender:</label>
             <div class="col-sm-10">
-                <select id="gender" class="form-control">
+                <select id="gender" class="form-control" [ngFormControl]="gender">
                     <option>Female</option>
                     <option>Male</option>
                 </select><br>
@@ -31,30 +57,50 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="birthDate">Birthdate:</label>
             <div class="col-sm-10">
-                <input id="birthDate" type='date' class="form-control"/><br>
+                <input id="birthDate" type='date' class="form-control" [ngFormControl]="birthDate"/><br>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ngControlGroup="passwordsGroup">
             <label class="control-label col-sm-2" for="Password">Password:</label>
             <div class="col-sm-10">
-                <input type="text" id="Password" class="form-control" placeholder="Password"><br>
+                <input type="password" id="Password" class="form-control" placeholder="Password"><br>
+                <div *ngIf="password.dirty && !password.valid">
+                    <div *ngIf="password.hasError('required')">Password is required</div>
+                    <div *ngIf="password.hasError('maxlength')">Password is no longer than 50 character</div>
+                    <div *ngIf="password.hasError('minlength')">Password must contain at least 6 characters</div>
+                    <div *ngIf="password.hasError('passwordFormat')">Password must contain at least 1 uppercase character, 1 lowercase character and 1 number</div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ngControlGroup="passwordsGroup">
             <label class="control-label col-sm-2" for="ConfirmPassword">Confirm password:</label>
             <div class="col-sm-10">
-                <input type="text" id="ConfirmPassword" class="form-control" placeholder="Confirm password"><br>
+                <input type="password" id="ConfirmPassword" class="form-control" placeholder="Confirm password"><br>
+                <div *ngIf="confirmPassword.dirty && !confirmPassword.valid">
+                    <div [hidden]="!group.hasError('equal', 'passwordsGroup')" class="alert alert-danger">
+                        <p>The passwords must match!</p>
+                    </div>
+                    <div *ngIf="confirmPassword.hasError('required')">Confirm is required</div>
+                    <div *ngIf="confirmPassword.hasError('maxlength')">First name is no longer than 30 character</div>
+                    <div *ngIf="confirmPassword.hasError('firstNameFormat')">Please enter your valid name</div>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="Address">Address:</label>
             <div class="col-sm-10">
-                <input type="text" id="Address" class="form-control" placeholder="Address"><br>
+                <input type="text" id="Address" class="form-control" placeholder="Address"
+                       [ngFormControl]="address"><br>
+                <div *ngIf="address.dirty && !address.valid">
+                    <div *ngIf="address.hasError('maxlength')" class="alert alert-danger">Address is no longer than 120
+                        character
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default" (click)="gotToProfileFromReg()">Register</button>
+                <button type="submit" class="btn btn-default" [disabled]="!registerForm.form.valid" (click)="gotToProfileFromReg()">Register</button>
             </div>
         </div>
     </form>
