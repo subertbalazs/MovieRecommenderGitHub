@@ -1,13 +1,8 @@
 import { Component } from "@angular/core";
 import {Router} from "@angular/router";
 import {Control, FormBuilder, Validators, ControlGroup, FORM_DIRECTIVES} from "@angular/common";
-import {CustomValidators} from './custom-validators';
+import {CustomValidators, matchingPasswords} from './custom-validators';
 
-function equalValidator({value}: ControlGroup): {[key: string]: any} {
-    const [first, ...rest] = Object.keys(value || {});
-    const valid = rest.every(v => value[v] === value[first]);
-    return valid ? null : {equal: true};
-}
 
 @Component({
     selector: 'reg',
@@ -35,7 +30,7 @@ export class RegistrationFieldComponent {
         this.birthDate = new Control('', Validators.required);
         this.gender = new Control('', Validators.required);
         this.password = new Control('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(50), CustomValidators.passwordFormat]));
-        this.confirmPassword = new Control();
+        this.confirmPassword = new Control('', Validators.required);
         this.group = builder.group({
             firstName: this.firstName,
             lastName: this.lastName,
@@ -44,12 +39,9 @@ export class RegistrationFieldComponent {
             birthDate: this.birthDate,
             address: this.address,
             password: this.password,
-            confirmPassword: this.confirmPassword,
-            'passwordsGroup': new ControlGroup({
-            'password': new Control(''),
-            'password2': new Control('')
-        }, {}, equalValidator)
-    });
+            confirmPassword: this.confirmPassword
+        }, {validator: matchingPasswords('password', 'confirmPassword')} );
+
     }
     gotToProfileFromReg() {
         this.router.navigate(['/profile']);
