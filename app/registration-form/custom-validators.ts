@@ -9,6 +9,10 @@ export class CustomValidators {
         return pattern.test(control.value) ? null : {"nameFormat": true};
     }
 
+    static emailFormat(control:Control):IValidation {
+        let pattern:RegExp = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{1,}\b/i;
+        return pattern.test(control.value) ? null : {"emailFormat": true};
+    }
     static passwordFormat(control: Control): IValidation {
         let pattern:RegExp = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/;
         return pattern.test(control.value) ? null : {"passwordFormat": true};

@@ -18,6 +18,7 @@ var RegistrationFieldComponent = (function () {
         this.firstName = new common_1.Control('', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.maxLength(30), custom_validators_1.CustomValidators.nameFormat]));
         this.lastName = new common_1.Control('', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.maxLength(50), custom_validators_1.CustomValidators.nameFormat]));
         this.nickName = new common_1.Control('', common_1.Validators.maxLength(20));
+        this.email = new common_1.Control('', common_1.Validators.compose([common_1.Validators.required, custom_validators_1.CustomValidators.emailFormat]));
         this.address = new common_1.Control('', common_1.Validators.maxLength(150));
         this.birthDate = new common_1.Control('', common_1.Validators.required);
         this.gender = new common_1.Control('', common_1.Validators.required);
@@ -27,6 +28,7 @@ var RegistrationFieldComponent = (function () {
             firstName: this.firstName,
             lastName: this.lastName,
             nickName: this.nickName,
+            email: this.email,
             gender: this.gender,
             birthDate: this.birthDate,
             address: this.address,

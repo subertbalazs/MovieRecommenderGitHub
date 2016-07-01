@@ -15,6 +15,7 @@ export class RegistrationFieldComponent {
     firstName:Control;
     lastName:Control;
     nickName:Control;
+    email:Control;
     gender:Control;
     birthDate:Control;
     address:Control;
@@ -26,6 +27,7 @@ export class RegistrationFieldComponent {
         this.firstName = new Control('', Validators.compose([Validators.required, Validators.maxLength(30), CustomValidators.nameFormat]));
         this.lastName = new Control('', Validators.compose([Validators.required, Validators.maxLength(50), CustomValidators.nameFormat]));
         this.nickName = new Control('', Validators.maxLength(20));
+        this.email = new Control('', Validators.compose([Validators.required, CustomValidators.emailFormat]));
         this.address = new Control('', Validators.maxLength(150));
         this.birthDate = new Control('', Validators.required);
         this.gender = new Control('', Validators.required);
@@ -35,6 +37,7 @@ export class RegistrationFieldComponent {
             firstName: this.firstName,
             lastName: this.lastName,
             nickName: this.nickName,
+            email: this.email,
             gender: this.gender,
             birthDate: this.birthDate,
             address: this.address,
