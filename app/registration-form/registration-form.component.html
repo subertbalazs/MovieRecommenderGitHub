@@ -60,16 +60,30 @@
                 <input id="birthDate" type='date' class="form-control" [ngFormControl]="birthDate"/><br>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ngControlGroup="passwordsGroup">
             <label class="control-label col-sm-2" for="Password">Password:</label>
             <div class="col-sm-10">
-                <input type="text" id="Password" class="form-control" placeholder="Password"><br>
+                <input type="password" id="Password" class="form-control" placeholder="Password"><br>
+                <div *ngIf="password.dirty && !password.valid">
+                    <div *ngIf="password.hasError('required')">Password is required</div>
+                    <div *ngIf="password.hasError('maxlength')">Password is no longer than 50 character</div>
+                    <div *ngIf="password.hasError('minlength')">Password must contain at least 6 characters</div>
+                    <div *ngIf="password.hasError('passwordFormat')">Password must contain at least 1 uppercase character, 1 lowercase character and 1 number</div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ngControlGroup="passwordsGroup">
             <label class="control-label col-sm-2" for="ConfirmPassword">Confirm password:</label>
             <div class="col-sm-10">
-                <input type="text" id="ConfirmPassword" class="form-control" placeholder="Confirm password"><br>
+                <input type="password" id="ConfirmPassword" class="form-control" placeholder="Confirm password"><br>
+                <div *ngIf="confirmPassword.dirty && !confirmPassword.valid">
+                    <div [hidden]="!group.hasError('equal', 'passwordsGroup')" class="alert alert-danger">
+                        <p>The passwords must match!</p>
+                    </div>
+                    <div *ngIf="confirmPassword.hasError('required')">Confirm is required</div>
+                    <div *ngIf="confirmPassword.hasError('maxlength')">First name is no longer than 30 character</div>
+                    <div *ngIf="confirmPassword.hasError('firstNameFormat')">Please enter your valid name</div>
+                </div>
             </div>
         </div>
         <div class="form-group">
