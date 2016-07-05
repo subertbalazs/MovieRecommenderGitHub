@@ -25,7 +25,7 @@ var LoginFieldComponent = (function () {
         this.active = true;
     }
     LoginFieldComponent.prototype.onSubmit = function () {
-        this.sendLoginData(this.user.username);
+        this.sendLoginData(this.user.username, this.user.password, this.user.stayLoggedIn);
         this.submitted = true;
     };
     LoginFieldComponent.prototype.userLogin = function () {
@@ -34,12 +34,12 @@ var LoginFieldComponent = (function () {
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
     };
-    LoginFieldComponent.prototype.sendLoginData = function (username) {
+    LoginFieldComponent.prototype.sendLoginData = function (username, password, stayLoggedIn) {
         var _this = this;
         if (!username) {
             return;
         }
-        this.loginHttpService.sendLoginData(username)
+        this.loginHttpService.sendLoginData(username, password, stayLoggedIn)
             .subscribe(function (user) { return _this.user = user; }, function (error) { return _this.errorMessage = error; });
     };
     LoginFieldComponent.prototype.gotToRegistration = function () {

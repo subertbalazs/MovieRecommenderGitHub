@@ -23,9 +23,8 @@ export class LoginFieldComponent {
     }
 
     onSubmit() {
-        this.sendLoginData(this.user.username);
+        this.sendLoginData(this.user.username,this.user.password,this.user.stayLoggedIn);
         this.submitted = true;
-
     }
 
     active = true;
@@ -36,9 +35,9 @@ export class LoginFieldComponent {
         setTimeout(() => this.active = true, 0);
     }
 
-    sendLoginData (username: string) {
+    sendLoginData (username: string,password: string,stayLoggedIn: boolean) {
         if (!username) { return; }
-        this.loginHttpService.sendLoginData(username)
+        this.loginHttpService.sendLoginData(username,password,stayLoggedIn)
             .subscribe(
                 user  => this.user = user,
                 error =>  this.errorMessage = <any>error);

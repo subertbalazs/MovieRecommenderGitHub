@@ -25,8 +25,8 @@ var LoginHttpService = (function () {
     //         .map(this.extractData)
     //         .catch(this.handleError);
     // }
-    LoginHttpService.prototype.sendLoginData = function (username) {
-        var body = JSON.stringify({ username: username });
+    LoginHttpService.prototype.sendLoginData = function (username, password, stayLoggedIn) {
+        var body = JSON.stringify({ username: username, password: password, stayLoggedIn: stayLoggedIn });
         var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
         var options = new http_2.RequestOptions({ headers: headers });
         return this.http.post(this.serverLoginUrl, body, options)

@@ -21,8 +21,8 @@ export class LoginHttpService {
     //         .catch(this.handleError);
     // }
 
-    sendLoginData (username: string): Observable<User> {
-        let body = JSON.stringify({ username });
+    sendLoginData (username: string,password: string,stayLoggedIn: boolean): Observable<User> {
+        let body = JSON.stringify({ username , password, stayLoggedIn});
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
