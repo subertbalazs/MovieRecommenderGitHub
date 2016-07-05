@@ -1,4 +1,4 @@
-import {Control} from '@angular/common';
+import {Control, ControlGroup} from '@angular/common';
 
 interface IValidation {
     [key: string]: boolean
@@ -9,8 +9,24 @@ export class CustomValidators {
         return pattern.test(control.value) ? null : {"nameFormat": true};
     }
 
+    static emailFormat(control:Control):IValidation {
+        let pattern:RegExp = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{1,}\b/i;
+        return pattern.test(control.value) ? null : {"emailFormat": true};
+    }
     static passwordFormat(control: Control): IValidation {
         let pattern:RegExp = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/;
         return pattern.test(control.value) ? null : {"passwordFormat": true};
+    }
+}
+export function matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
+    return (group: ControlGroup): {[key: string]: any} => {
+        let password = group.controls[passwordKey];
+        let confirmPassword = group.controls[confirmPasswordKey];
+
+        if (password.value !== confirmPassword.value) {
+            return {
+                "mismatchedPasswords": true
+            };
+        }
     }
 }
