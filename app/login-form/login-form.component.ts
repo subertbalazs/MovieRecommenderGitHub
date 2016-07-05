@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
     templateUrl: 'app/login-form/login-form.component.html'
 })
 export class LoginFieldComponent {
-
-    user = new User('', '');
+//TODO: tipusossag like user
+    user:User = new User('', '');
     submitted = false;
 
     constructor(private router:Router) {

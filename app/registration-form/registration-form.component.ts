@@ -22,7 +22,10 @@ export class RegistrationFieldComponent {
     password:Control;
     confirmPassword:Control;
     group:ControlGroup;
-
+//TODO: kiszervezes
+//TODO: magic numbers kiszervezes
+//TODO: fuggvenyhivasok ksizervezese - validators.compose best practise?
+    
     constructor(private router:Router, builder:FormBuilder) {
         this.firstName = new Control('', Validators.compose([Validators.required, Validators.maxLength(30), CustomValidators.nameFormat]));
         this.lastName = new Control('', Validators.compose([Validators.required, Validators.maxLength(50), CustomValidators.nameFormat]));

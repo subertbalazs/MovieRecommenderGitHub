@@ -13,6 +13,9 @@ var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
 var custom_validators_1 = require('./custom-validators');
 var RegistrationFieldComponent = (function () {
+    //TODO: kiszervezes
+    //TODO: magic numbers kiszervezes
+    //TODO: fuggvenyhivasok ksizervezese - validators.compose best practise?
     function RegistrationFieldComponent(router, builder) {
         this.router = router;
         this.firstName = new common_1.Control('', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.maxLength(30), custom_validators_1.CustomValidators.nameFormat]));

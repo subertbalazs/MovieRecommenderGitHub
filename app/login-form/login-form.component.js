@@ -17,6 +17,7 @@ var router_1 = require("@angular/router");
 var LoginFieldComponent = (function () {
     function LoginFieldComponent(router) {
         this.router = router;
+        //TODO: tipusossag like user
         this.user = new user_1.User('', '');
         this.submitted = false;
         this.active = true;
