@@ -14,15 +14,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var user_1 = require("./user");
 var router_1 = require("@angular/router");
+var login_form_httpservice_1 = require("./login-form.httpservice");
 var LoginFieldComponent = (function () {
-    function LoginFieldComponent(router) {
+    function LoginFieldComponent(router, loginHttpService) {
         this.router = router;
-        //TODO: tipusossag like user
+        this.loginHttpService = loginHttpService;
         this.user = new user_1.User('', '', false);
         this.submitted = false;
+        this.mode = 'Observable';
         this.active = true;
     }
     LoginFieldComponent.prototype.onSubmit = function () {
+        this.sendLoginData(this.user.username);
         this.submitted = true;
     };
     LoginFieldComponent.prototype.userLogin = function () {
@@ -31,8 +34,13 @@ var LoginFieldComponent = (function () {
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
     };
-    LoginFieldComponent.prototype.makeObject = function () {
-        this.jsonObject = JSON.stringify(this.user);
+    LoginFieldComponent.prototype.sendLoginData = function (username) {
+        var _this = this;
+        if (!username) {
+            return;
+        }
+        this.loginHttpService.sendLoginData(username)
+            .subscribe(function (user) { return _this.user = user; }, function (error) { return _this.errorMessage = error; });
     };
     LoginFieldComponent.prototype.gotToRegistration = function () {
         this.router.navigate(['/registration']);
@@ -43,9 +51,10 @@ var LoginFieldComponent = (function () {
     LoginFieldComponent = __decorate([
         core_1.Component({
             selector: 'log',
-            templateUrl: 'app/login-form/login-form.component.html'
+            templateUrl: 'app/login-form/login-form.component.html',
+            providers: [login_form_httpservice_1.LoginHttpService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, login_form_httpservice_1.LoginHttpService])
     ], LoginFieldComponent);
     return LoginFieldComponent;
 }());

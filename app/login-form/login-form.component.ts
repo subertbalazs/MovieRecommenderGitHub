@@ -7,21 +7,23 @@ import {Router} from "@angular/router";
 import {LoginHttpService} from "./login-form.httpservice";
 
 
-
 @Component({
     selector: 'log',
-    templateUrl: 'app/login-form/login-form.component.html'
+    templateUrl: 'app/login-form/login-form.component.html',
+    providers: [ LoginHttpService]
 })
 export class LoginFieldComponent {
 //TODO: tipusossag like user
+    errorMessage: string;
     user:User = new User('', '', false);
-    submitted = false;
-    jsonObject;
+    submitted:boolean = false;
+    mode = 'Observable';
 
-    constructor(private router:Router) {
+    constructor(private router:Router, private loginHttpService: LoginHttpService) {
     }
 
     onSubmit() {
+        this.sendLoginData(this.user.username);
         this.submitted = true;
 
     }
@@ -34,9 +36,14 @@ export class LoginFieldComponent {
         setTimeout(() => this.active = true, 0);
     }
 
-    makeObject(){
-        this.jsonObject = JSON.stringify(this.user);
+    sendLoginData (username: string) {
+        if (!username) { return; }
+        this.loginHttpService.sendLoginData(username)
+            .subscribe(
+                user  => this.user = user,
+                error =>  this.errorMessage = <any>error);
     }
+    
 
     gotToRegistration() {
         this.router.navigate(['/registration']);

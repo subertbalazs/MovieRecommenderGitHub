@@ -10,6 +10,7 @@ import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class LoginHttpService {
+    
     constructor (private http: Http) {}
 
     private serverLoginUrl = 'http://localhost:3000/';  // URL to web API
@@ -20,8 +21,8 @@ export class LoginHttpService {
     //         .catch(this.handleError);
     // }
 
-    sendLoginData (name: string): Observable<User> {
-        let body = JSON.stringify({ name });
+    sendLoginData (username: string): Observable<User> {
+        let body = JSON.stringify({ username });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
