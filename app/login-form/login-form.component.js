@@ -18,7 +18,7 @@ var LoginFieldComponent = (function () {
     function LoginFieldComponent(router) {
         this.router = router;
         //TODO: tipusossag like user
-        this.user = new user_1.User('', '');
+        this.user = new user_1.User('', '', false);
         this.submitted = false;
         this.active = true;
     }
@@ -27,9 +27,12 @@ var LoginFieldComponent = (function () {
     };
     LoginFieldComponent.prototype.userLogin = function () {
         var _this = this;
-        this.user = new user_1.User('', '');
+        this.user = new user_1.User('', '', false);
         this.active = false;
         setTimeout(function () { return _this.active = true; }, 0);
+    };
+    LoginFieldComponent.prototype.makeObject = function () {
+        this.jsonObject = JSON.stringify(this.user);
     };
     LoginFieldComponent.prototype.gotToRegistration = function () {
         this.router.navigate(['/registration']);

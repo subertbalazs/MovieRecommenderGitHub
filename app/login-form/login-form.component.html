@@ -5,7 +5,7 @@
             <label class="control-label col-sm-2" for="username">Username</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="username" placeholder="Enter username" required
-                       ngControl="username" #username="ngForm">
+                       ngControl="username" #username="ngForm" [(ngModel)]="user.username">
                 <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
                     <!--TODO: extract functions from html file to component-->
                     <p>Username is required</p>
@@ -16,7 +16,7 @@
             <label class="control-label col-sm-2" for="password">Password:</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="password" placeholder="Enter password" required
-                       ngControl="password" #password="ngForm">
+                       ngControl="password" #password="ngForm" [(ngModel)]="user.password">
                 <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
                     <p>Password is required</p>
                 </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
-                    <label><input type="checkbox"> Stay logged in</label>
+                    <label><input type="checkbox" [(ngModel)]="user.stayLoggedIn"> Stay logged in</label>
                 </div>
             </div>
         </div>
@@ -43,5 +43,7 @@
             </div>
         </div>
 
+        <!--<div>kacsa {{user.username}}</div>-->
+        <!--<div>kacsa2 {{user.stayLoggedIn}}</div>-->
     </form>
 </div>

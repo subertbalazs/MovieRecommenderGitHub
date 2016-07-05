@@ -12,22 +12,28 @@ import {Router} from "@angular/router";
 })
 export class LoginFieldComponent {
 //TODO: tipusossag like user
-    user:User = new User('', '');
+    user:User = new User('', '', false);
     submitted = false;
+    jsonObject;
 
     constructor(private router:Router) {
     }
 
     onSubmit() {
         this.submitted = true;
+
     }
 
     active = true;
 
     userLogin() {
-        this.user = new User('', '');
+        this.user = new User('', '', false);
         this.active = false;
         setTimeout(() => this.active = true, 0);
+    }
+
+    makeObject(){
+        this.jsonObject = JSON.stringify(this.user);
     }
 
     gotToRegistration() {
