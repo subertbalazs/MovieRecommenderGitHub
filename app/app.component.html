@@ -6,7 +6,8 @@
         <ul class="nav navbar-nav">
             <li><a [routerLink]="['login']">Login</a></li>
             <li><a [routerLink]="['registration']">Registration</a></li>
-            <li><a [routerLink]="['login']">Logout</a></li>
+            <!--<li><a [routerLink]="['login']">Logout</a></li>-->
+            <li><a (click)="sendLogOut()" [routerLink]="['login']">Logout</a></li>
         </ul>
     </div>
 </nav>

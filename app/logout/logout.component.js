@@ -8,32 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+/**
+ * Created by herczkumihalybalazs on 2016.07.06..
+ */
 var core_1 = require("@angular/core");
-var router_1 = require('@angular/router');
-require('./rxjs-operators');
-var http_1 = require("@angular/http");
-var logout_httpservice_1 = require("./logout/logout.httpservice");
-var AppComponent = (function () {
-    function AppComponent(loginHttpService) {
+var logout_httpservice_1 = require("./logout.httpservice");
+var LogoutComponent = (function () {
+    function LogoutComponent(loginHttpService) {
         this.loginHttpService = loginHttpService;
-        this.title = 'Movie Recommender';
         this.mode = 'Observable';
     }
-    AppComponent.prototype.sendLogOut = function () {
+    LogoutComponent.prototype.sendLogOut = function () {
         var _this = this;
         this.loginHttpService.sendLogOut()
             .subscribe(function (error) { return _this.errorMessage = error; });
     };
-    AppComponent = __decorate([
+    LogoutComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: './app/app.component.html',
-            directives: [router_1.ROUTER_DIRECTIVES],
-            providers: [http_1.HTTP_PROVIDERS, logout_httpservice_1.LogoutService]
+            providers: [logout_httpservice_1.LogoutService]
         }), 
         __metadata('design:paramtypes', [logout_httpservice_1.LogoutService])
-    ], AppComponent);
-    return AppComponent;
+    ], LogoutComponent);
+    return LogoutComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.LogoutComponent = LogoutComponent;
+//# sourceMappingURL=logout.component.js.map
