@@ -14,15 +14,10 @@ export class LoginHttpService {
     constructor (private http: Http) {}
 
     private serverLoginUrl = 'http://localhost:3000/';  // URL to web API
-
-    // getHeroes (): Observable<User[]> {
-    //     return this.http.get(this.serverLoginUrl)
-    //         .map(this.extractData)
-    //         .catch(this.handleError);
-    // }
-
+    
     sendLoginData (username: string,password: string,stayLoggedIn: boolean): Observable<User> {
         let body = JSON.stringify({ username , password, stayLoggedIn});
+        // let body = JSON.stringify({ username , password, stayLoggedIn});
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 

@@ -21,6 +21,6 @@ export class AppComponent {
     sendLogOut () {
         this.loginHttpService.sendLogOut()
             .subscribe(
-                error =>  this.errorMessage = <any>error);
+            error =>  this.errorMessage = <any>error);
     }
 }
