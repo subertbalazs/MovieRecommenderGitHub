@@ -11,11 +11,11 @@ export class RegistrationFormHttpService {
     constructor(private http:Http) {
     }
 
-    private serverLoginUrl = 'http://localhost:3000/';  // URL to web API
+    private serverLoginUrl = 'http://localhost:8081/registration';  // URL to web API
 
-    sendRegistrationData(firstName:string,lastName:string,nickName:string,email:string,gender:string,birthDate:string,address:string,password:string) {
-        // let body = JSON.stringify({});
-        let body = JSON.stringify({firstName,lastName,nickName,email,gender,birthDate,address,password});
+    sendRegistrationData(firstName:string, lastName:string, nickName:string, email:string, gender:string, birthDate:string,
+                         address:string, password:string) {
+        let body = JSON.stringify({firstName, lastName, nickName, email, gender, birthDate, address, password});
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 

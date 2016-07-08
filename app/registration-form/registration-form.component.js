@@ -44,9 +44,6 @@ var RegistrationFieldComponent = (function () {
     }
     RegistrationFieldComponent.prototype.sendRegistrationData = function (firstName, lastName, nickName, email, gender, birthDate, address, password) {
         var _this = this;
-        if (!firstName) {
-            return;
-        }
         this.registrationFormHttpService.sendRegistrationData(firstName, lastName, nickName, email, gender, birthDate, address, password)
             .subscribe(function (error) { return _this.errorMessage = error; });
     };

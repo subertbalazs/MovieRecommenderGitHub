@@ -17,10 +17,9 @@ var Observable_1 = require("rxjs/Observable");
 var RegistrationFormHttpService = (function () {
     function RegistrationFormHttpService(http) {
         this.http = http;
-        this.serverLoginUrl = 'http://localhost:3000/'; // URL to web API
+        this.serverLoginUrl = 'http://localhost:8081/registration'; // URL to web API
     }
     RegistrationFormHttpService.prototype.sendRegistrationData = function (firstName, lastName, nickName, email, gender, birthDate, address, password) {
-        // let body = JSON.stringify({});
         var body = JSON.stringify({ firstName: firstName, lastName: lastName, nickName: nickName, email: email, gender: gender, birthDate: birthDate, address: address, password: password });
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });

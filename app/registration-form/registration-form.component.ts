@@ -56,10 +56,8 @@ export class RegistrationFieldComponent {
         }, {validator: matchingPasswords('password', 'confirmPassword')});
     }
 
-    sendRegistrationData(firstName:string,lastName:string,nickName:string,email:string,gender:string,birthDate:string,address:string,password:string) {
-        if (!firstName) {
-            return;
-        }
+    sendRegistrationData(firstName:string,lastName:string,nickName:string,email:string,gender:string,birthDate:string,
+                         address:string,password:string) {
         this.registrationFormHttpService.sendRegistrationData(firstName,lastName,nickName,email,gender,birthDate,
             address,password)
             .subscribe(

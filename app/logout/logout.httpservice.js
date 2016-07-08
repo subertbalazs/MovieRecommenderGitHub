@@ -11,16 +11,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var Observable_1 = require('rxjs/Observable');
-var http_1 = require('@angular/http');
+var core_1 = require("@angular/core");
+var Observable_1 = require("rxjs/Observable");
+var http_1 = require("@angular/http");
 var LogoutService = (function () {
     function LogoutService(http) {
         this.http = http;
-        this.serverLoginUrl = 'http://localhost:3000/'; // URL to web API
+        this.serverLoginUrl = 'http://localhost:8081/logout'; // URL to web API
     }
     LogoutService.prototype.sendLogOut = function () {
-        // let body = JSON.stringify({ username , password, stayLoggedIn});
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this.http.post(this.serverLoginUrl, options)
