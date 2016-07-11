@@ -1,23 +1,25 @@
 /**
  * Created by herczkumihalybalazs on 2016.07.06..
  */
-
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs/Observable";
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class LogoutService {
+export class RegistrationFormHttpService {
+
     constructor(private http:Http) {
     }
 
-    private serverLoginUrl = 'http://localhost:8081/logout';  // URL to web API
+    private serverLoginUrl = 'http://localhost:8081/registration';  // URL to web API
 
-    sendLogOut() {
+    sendRegistrationData(firstName:string, lastName:string, nickName:string, email:string, gender:string, birthDate:string,
+                         address:string, password:string) {
+        let body = JSON.stringify({firstName, lastName, nickName, email, gender, birthDate, address, password});
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
 
-        return this.http.post(this.serverLoginUrl, options)
+        return this.http.post(this.serverLoginUrl, body, options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -35,6 +37,4 @@ export class LogoutService {
         console.error(errMsg); // log to console instead
         return Observable.throw(errMsg);
     }
-
-
 }

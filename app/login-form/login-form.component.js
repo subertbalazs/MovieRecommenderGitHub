@@ -36,11 +36,10 @@ var LoginFieldComponent = (function () {
     };
     LoginFieldComponent.prototype.sendLoginData = function (username, password, stayLoggedIn) {
         var _this = this;
-        if (!username) {
-            return;
-        }
         this.loginHttpService.sendLoginData(username, password, stayLoggedIn)
-            .subscribe(function (user) { return _this.user = user; }, function (error) { return _this.errorMessage = error; });
+            .then(
+        // this.gotToProfileFromLog,
+        function (error) { return _this.errorMessage = error; });
     };
     LoginFieldComponent.prototype.gotToRegistration = function () {
         this.router.navigate(['/registration']);

@@ -11,13 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var common_1 = require("@angular/common");
-var custom_validators_1 = require('./custom-validators');
+var custom_validators_1 = require("./custom-validators");
+var registration_form_httpService_1 = require("./registration-form.httpService");
 var RegistrationFieldComponent = (function () {
     //TODO: kiszervezes
     //TODO: magic numbers kiszervezes
     //TODO: fuggvenyhivasok ksizervezese - validators.compose best practise?
-    function RegistrationFieldComponent(router, builder) {
+    function RegistrationFieldComponent(router, registrationFormHttpService, builder) {
         this.router = router;
+        this.registrationFormHttpService = registrationFormHttpService;
+        this.mode = 'Observable';
         this.firstName = new common_1.Control('', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.maxLength(30), custom_validators_1.CustomValidators.nameFormat]));
         this.lastName = new common_1.Control('', common_1.Validators.compose([common_1.Validators.required, common_1.Validators.maxLength(50), custom_validators_1.CustomValidators.nameFormat]));
         this.nickName = new common_1.Control('', common_1.Validators.maxLength(20));
@@ -39,19 +42,26 @@ var RegistrationFieldComponent = (function () {
             confirmPassword: this.confirmPassword
         }, { validator: custom_validators_1.matchingPasswords('password', 'confirmPassword') });
     }
+    RegistrationFieldComponent.prototype.sendRegistrationData = function (firstName, lastName, nickName, email, gender, birthDate, address, password) {
+        var _this = this;
+        this.registrationFormHttpService.sendRegistrationData(firstName, lastName, nickName, email, gender, birthDate, address, password)
+            .subscribe(function (error) { return _this.errorMessage = error; });
+    };
     RegistrationFieldComponent.prototype.gotToProfileFromReg = function () {
         this.router.navigate(['/profile']);
     };
     RegistrationFieldComponent.prototype.onSubmit = function () {
+        this.sendRegistrationData(this.firstName.value, this.lastName.value, this.nickName.value, this.email.value, this.address.value, this.birthDate.value, this.gender.value, this.password.value);
     };
     RegistrationFieldComponent = __decorate([
         core_1.Component({
             selector: 'reg',
             directives: [common_1.FORM_DIRECTIVES],
+            providers: [registration_form_httpService_1.RegistrationFormHttpService],
             templateUrl: 'app/registration-form/registration-form.component.html',
             styleUrls: ['app/registration-form/registration-form.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, common_1.FormBuilder])
+        __metadata('design:paramtypes', [router_1.Router, registration_form_httpService_1.RegistrationFormHttpService, common_1.FormBuilder])
     ], RegistrationFieldComponent);
     return RegistrationFieldComponent;
 }());

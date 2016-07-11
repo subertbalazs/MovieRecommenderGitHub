@@ -1,17 +1,23 @@
-import { Component } from "@angular/core";
+import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {Control, FormBuilder, Validators, ControlGroup, FORM_DIRECTIVES} from "@angular/common";
-import {CustomValidators, matchingPasswords} from './custom-validators';
+import {CustomValidators, matchingPasswords} from "./custom-validators";
+import {RegistrationFormHttpService} from "./registration-form.httpService";
 
 
 @Component({
     selector: 'reg',
     directives: [FORM_DIRECTIVES],
+    providers: [RegistrationFormHttpService],
     templateUrl: 'app/registration-form/registration-form.component.html',
     styleUrls: ['app/registration-form/registration-form.component.css']
 })
 
 export class RegistrationFieldComponent {
+    errorMessage:string;
+    mode = 'Observable';
+
+
     firstName:Control;
     lastName:Control;
     nickName:Control;
@@ -22,11 +28,12 @@ export class RegistrationFieldComponent {
     password:Control;
     confirmPassword:Control;
     group:ControlGroup;
+    registeringDataGroup:ControlGroup;
 //TODO: kiszervezes
 //TODO: magic numbers kiszervezes
 //TODO: fuggvenyhivasok ksizervezese - validators.compose best practise?
-    
-    constructor(private router:Router, builder:FormBuilder) {
+
+    constructor(private router:Router, private registrationFormHttpService:RegistrationFormHttpService, builder:FormBuilder) {
         this.firstName = new Control('', Validators.compose([Validators.required, Validators.maxLength(30), CustomValidators.nameFormat]));
         this.lastName = new Control('', Validators.compose([Validators.required, Validators.maxLength(50), CustomValidators.nameFormat]));
         this.nickName = new Control('', Validators.maxLength(20));
@@ -46,12 +53,23 @@ export class RegistrationFieldComponent {
             address: this.address,
             password: this.password,
             confirmPassword: this.confirmPassword
-        }, {validator: matchingPasswords('password', 'confirmPassword')} );
-
+        }, {validator: matchingPasswords('password', 'confirmPassword')});
     }
+
+    sendRegistrationData(firstName:string,lastName:string,nickName:string,email:string,gender:string,birthDate:string,
+                         address:string,password:string) {
+        this.registrationFormHttpService.sendRegistrationData(firstName,lastName,nickName,email,gender,birthDate,
+            address,password)
+            .subscribe(
+                error => this.errorMessage = <any>error);
+    }
+
     gotToProfileFromReg() {
         this.router.navigate(['/profile']);
     }
+
     onSubmit() {
+        this.sendRegistrationData(this.firstName.value,this.lastName.value,this.nickName.value,this.email.value,
+            this.address.value, this.birthDate.value, this.gender.value,this.password.value);
     }
 }
